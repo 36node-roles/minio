@@ -1,0 +1,17 @@
+# 设置参考
+# https://github.com/bitnami/charts/tree/master/bitnami/minio/values.yaml
+---
+mode: "{{ minio_mode }}"
+ingress:
+  enabled: "{{ minio_ingress_enabled }}"
+  hostname: "{{ minio_ingress_hostname }}"
+  annotations:
+    kubernetes.io/ingress.class: traefik
+apiIngress:
+  enabled: "{{ minio_apiIngress_enabled }}"
+  hostname: "{{ minio_apiIngress_hostname }}"
+  annotations:
+    kubernetes.io/ingress.class: traefik
+persistence:
+  storageClass: "{{ minio_persistence_storageClass }}"
+  size: "{{ minio_persistence_size }}"

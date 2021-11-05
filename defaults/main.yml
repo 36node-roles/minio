@@ -1,0 +1,21 @@
+---
+state: present
+namespace: minio
+storage_class: "-"
+wait: no
+
+minio_state: "{{ state }}"
+minio_namespace: "{{ namespace }}"
+
+minio_mode: "distributed"
+
+minio_ingress_enabled: true
+minio_ingress_hostname: console.minio.36node.com
+
+minio_apiIngress_enabled: true
+minio_apiIngress_hostname: api.minio.36node.com
+
+minio_persistence_storageClass: "{{ storage_class }}"
+minio_persistence_size: 8Gi
+
+minio_chart_values: {}

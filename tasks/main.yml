@@ -1,0 +1,20 @@
+---
+# tasks file for minio
+- name: Add bitnami chart repo
+  community.kubernetes.helm_repository:
+    state: present
+    name: bitnami
+    repo_url: "https://charts.bitnami.com/bitnami"
+
+- name: Deploy minio
+  community.kubernetes.helm:
+    state: "{{ minio_state }}"
+    name: minio
+    namespace: "{{ minio_namespace }}"
+    create_namespace: true
+    chart_ref: bitnami/minio
+    chart_version: 9.0.6
+    values: "{{ lookup('template', 'minio_values.yml.j2') | from_yaml | combine(minio_chart_values, recursive=True) }}"
+    wait: "{{ wait }}"
+    wait_timeout: 10m
+  register: minio_installed
