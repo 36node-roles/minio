@@ -8,6 +8,7 @@ minio_state: "{{ state }}"
 minio_namespace: "{{ namespace }}"
 
 minio_mode: "distributed"
+minio_tls: true
 
 minio_ingress_enabled: true
 minio_ingress_hostname: console.minio.36node.com

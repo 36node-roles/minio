@@ -1,3 +1,4 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
 # 设置参考
 # https://github.com/bitnami/charts/tree/master/bitnami/minio/values.yaml
 ---
@@ -5,13 +6,21 @@ mode: "{{ minio_mode }}"
 ingress:
   enabled: "{{ minio_ingress_enabled }}"
   hostname: "{{ minio_ingress_hostname }}"
+  tls: "{{ minio_tls }}"
   annotations:
     kubernetes.io/ingress.class: traefik
+    {% if minio_tls %}
+    cert-manager.io/cluster-issuer: "{{ cert_issuer }}"
+    {% endif %}
 apiIngress:
   enabled: "{{ minio_apiIngress_enabled }}"
   hostname: "{{ minio_apiIngress_hostname }}"
+  tls: "{{ minio_tls }}"
   annotations:
     kubernetes.io/ingress.class: traefik
+    {% if minio_tls %}
+    cert-manager.io/cluster-issuer: "{{ cert_issuer }}"
+    {% endif %}
 persistence:
   storageClass: "{{ minio_persistence_storageClass }}"
   size: "{{ minio_persistence_size }}"
