@@ -13,7 +13,7 @@
     namespace: "{{ minio_namespace }}"
     create_namespace: true
     chart_ref: bitnami/minio
-    chart_version: 9.0.6
+    chart_version: "{{ minio_chart_version }}"
     values: "{{ lookup('template', 'minio_values.yml.j2') | from_yaml | combine(minio_chart_values, recursive=True) }}"
     wait: "{{ wait }}"
     wait_timeout: 10m

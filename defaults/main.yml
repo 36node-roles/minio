@@ -7,6 +7,8 @@ wait: no
 minio_state: "{{ state }}"
 minio_namespace: "{{ namespace }}"
 
+minio_chart_version: 9.0.6
+
 minio_mode: "distributed"
 minio_tls: true
 
